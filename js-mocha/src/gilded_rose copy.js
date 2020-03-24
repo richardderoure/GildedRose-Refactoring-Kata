@@ -1,9 +1,9 @@
 class Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality, conjured){
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
-    
+    this.conjured = conjured;
   }
 }
 
