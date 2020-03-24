@@ -10,42 +10,53 @@ class Shop {
     constructor(items = []) {
         this.items = items;
     }
+    
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
+            console.log('this is i: ' + i);
             if (this.items[i].name == 'Aged Brie') {
-                this.improve()
+                improve(i)
             } else if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-                this.backstage()
+                backstage(i)
             } else if (this.items[i].name == 'Sulfuras, Hand of Ragnaros') {
-                this.sulfuras()
+                sulfuras(i)
             } else {
-                this.degrade()
-            }
-            this.items[i].sellIn--;
+                degrade(i)
+            }           
+        this.items[i].sellIn--;
+
         }
     }
-    backstage() {
-        this.improve()
-        if (this.items[i].sellIn < 11) this.improve();
-        if (this.items[i].sellIn < 6) this.improve();
-        if (this.items[i].sellIn < 0) this.items[i].quality = 0;
-    }
-    sulfuras() {
-        this.items[i].sellIn++;
-    }
-    degrade() {
-        if (this.items[i].quality <= 50 && this.items[i].quality > 0) {
-            let x = 1;
-            if (this.items[i].sellIn < 0) x *= 2;
-            if (this.items[i].conjured == true) x *= 2;
-            this.items[i].quality -= x;
-            if (this.items[i].quality < 0) this.items[i].quality = 0;
-        }
-    }
-    improve() {
-        if (this.items[i].quality < 50) this.items[i].quality++;
+    
+}
+
+function backstage(i) {
+    console.log('this is backstage i: ' + i);
+
+    improve(i)
+    if (Shop.items[i].sellIn < 11) improve(i);
+    if (Shop.items[i].sellIn < 6) improve(i);
+    if (Shop.items[i].sellIn < 0) Shop.items[i].quality = 0;
+}
+function sulfuras(i) {
+    console.log('this is sulfuras i: ' + i);
+    Shop.items[i].sellIn++;
+}
+function degrade(i) {
+    console.log('this is degrade i: ' + i);
+    if (Shop.items[i].quality <= 50 && Shop.items[i].quality > 0) {
+        let x = 1;
+        if (Shop.items[i].sellIn < 0) x *= 2;
+        if (Shop.items[i].conjured == true) x *= 2;
+        Shop.items[i].quality -= x;
+        if (Shop.items[i].quality < 0) Shop.items[i].quality = 0;
     }
 }
+function improve(i) {
+    console.log('this is improve i: ' + i);
+    if (Shop.items[i].quality < 50) Shop.items[i].quality++;
+}
+
 module.exports = {
     Item,
     Shop
